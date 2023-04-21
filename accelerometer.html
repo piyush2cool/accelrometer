@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Accelerometer Sensor Data</title>
+</head>
+<body>
+	<p>Accelerometer Sensor Data:</p>
+	<p id="accelerometer-data"></p>
+
+	<script>
+		// Check if the DeviceMotionEvent is supported
+		if (window.DeviceMotionEvent) {
+			// Add an event listener to the window object
+			window.addEventListener('devicemotion', function(event) {
+				// Get the accelerometer data from the event object
+				var acceleration = event.acceleration;
+				var accelerationIncludingGravity = event.accelerationIncludingGravity;
+				var rotationRate = event.rotationRate;
+				var interval = event.interval;
+
+				// Display the accelerometer data on the webpage
+				document.getElementById('accelerometer-data').innerHTML = 
+					'Acceleration: ' + acceleration.x + ', ' + acceleration.y + ', ' + acceleration.z + '<br>' +
+					'Acceleration including gravity: ' + accelerationIncludingGravity.x + ', ' + accelerationIncludingGravity.y + ', ' + accelerationIncludingGravity.z + '<br>' +
+					'Rotation rate: ' + rotationRate.alpha + ', ' + rotationRate.beta + ', ' + rotationRate.gamma + '<br>' +
+					'Interval: ' + interval;
+			});
+		} else {
+			// The DeviceMotionEvent is not supported
+			alert('DeviceMotionEvent is not supported.');
+		}
+	</script>
+</body>
+</html>
